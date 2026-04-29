@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivora-RP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-black text-white min-h-screen">
+
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+
+    <!-- LOGO -->
+    <div class="text-center mb-10">
+        <img src="https://i.imgur.com/9X7Z8yL.png"
+             class="mx-auto w-64 h-64 object-contain mb-4 rounded-xl">
+        <h1 class="text-4xl font-bold text-purple-500">NIVORA ROLEPLAY</h1>
+    </div>
+
+    <!-- CONTATOS -->
+    <div class="mb-6 text-center">
+        <p>7AnjoX: (44) 99114-8268</p>
+        <p>7BielX: (34) 99111-6468</p>
+    </div>
+
+    <!-- RECARREGAR MOEDAS -->
+    <div class="mb-10">
+        <h2 class="text-green-400 text-2xl font-bold mb-4">RECARREGAR MOEDAS</h2>
+
+        <!-- CASH -->
+        <div class="mb-6">
+            <h3 class="font-bold">Cash</h3>
+
+            <button id="menosCash">-</button>
+            <input id="valorCash" value="1000" readonly>
+            <button id="maisCash">+</button>
+
+            <p>Valor: R$ <span id="precoCash">1,00</span></p>
+
+            <a id="linkCash" href="#" target="_blank">Comprar Cash</a>
+        </div>
+
+        <!-- COINS -->
+        <div>
+            <h3 class="font-bold">Coins</h3>
+
+            <button id="menosCoin">-</button>
+            <input id="valorCoin" value="1" readonly>
+            <button id="maisCoin">+</button>
+
+            <p>Valor: R$ <span id="precoCoin">10,00</span></p>
+
+            <a id="linkCoin" href="#" target="_blank">Comprar Coins</a>
+        </div>
+    </div>
+
+    <!-- ITENS FIXOS -->
+    <div>
+
+        <h2 class="text-orange-400 text-2xl font-bold mb-4">ITENS FIXOS</h2>
+
+        <!-- FAMÍLIAS -->
+        <h3 class="font-bold mb-2">Famílias</h3>
+
+        <div class="grid gap-4">
+
+            <div>
+                Família Normal - R$25
+            </div>
+
+            <div>
+                Família VIP - R$50
+            </div>
+
+            <div>
+                Família VIP + Armas - R$80
+            </div>
+
+        </div>
+
+        <!-- DISCORD -->
+        <h3 class="font-bold mt-6 mb-2">Discord</h3>
+
+        <div class="grid gap-4">
+
+            <div>TAG Discord - R$25</div>
+            <div>CALL Discord - R$30</div>
+
+        </div>
+
+        <!-- ESPECIAIS -->
+        <h3 class="font-bold mt-6 mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-lock-open text-yellow-400"></i> ESPECIAIS
+        </h3>
+
+        <div class="grid gap-4">
+            <!-- futuros itens -->
+        </div>
+
+    </div> <!-- ITENS FIXOS FECHADO -->
+
+</div> <!-- CONTAINER FECHADO -->
+
+<script>
+    // CASH
+    let cashQtd = 1000;
+    const cashStep = 1000;
+    const cashPriceUnit = 1;
+
+    const valorCash = document.getElementById("valorCash");
+    const precoCash = document.getElementById("precoCash");
+    const linkCash = document.getElementById("linkCash");
+
+    document.getElementById("maisCash").onclick = () => {
+        cashQtd += cashStep;
+        atualizarCash();
+    };
+
+    document.getElementById("menosCash").onclick = () => {
+        if (cashQtd > cashStep) {
+            cashQtd -= cashStep;
+            atualizarCash();
+        }
+    };
+
+    function atualizarCash() {
+        valorCash.value = cashQtd;
+
+        let total = (cashQtd / 1000) * cashPriceUnit;
+        precoCash.innerText = total.toFixed(2).replace(".", ",");
+
+        linkCash.href = "https://wa.me/5544991148268?text=Quero Cash " + cashQtd;
+    }
+
+    // COINS
+    let coinQtd = 1;
+    const coinPriceUnit = 10;
+
+    const valorCoin = document.getElementById("valorCoin");
+    const precoCoin = document.getElementById("precoCoin");
+    const linkCoin = document.getElementById("linkCoin");
+
+    document.getElementById("maisCoin").onclick = () => {
+        coinQtd++;
+        atualizarCoin();
+    };
+
+    document.getElementById("menosCoin").onclick = () => {
+        if (coinQtd > 1) {
+            coinQtd--;
+            atualizarCoin();
+        }
+    };
+
+    function atualizarCoin() {
+        valorCoin.value = coinQtd;
+
+        let total = coinQtd * coinPriceUnit;
+        precoCoin.innerText = total.toFixed(2).replace(".", ",");
+
+        linkCoin.href = "https://wa.me/5544991148268?text=Quero Coin " + coinQtd;
+    }
+</script>
+
+</body>
+</html>
